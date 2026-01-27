@@ -60,10 +60,12 @@ This project is intentionally **local-first**: it demonstrates *platform enginee
 
   * labeled and tainted (`NoSchedule`)
   * only infra workloads tolerate it
+
 * **GPU node**
 
   * labeled and tainted as well
   * only GPU workloads can schedule
+  
 * **App node**
 
   * default scheduling target
@@ -81,13 +83,20 @@ GPU workloads must **explicitly request GPUs** and **tolerate the GPU taint**.
 │   │   ├── k3d.tf            # Cluster bootstrap (Terraform + k3d)
 │   │   ├── providers.tf      # Cluster configuration
 │   │   └── variables.tf
+│   │
 │   ├──platform
-│   │   ├── k8S.tf           # Labels and taints 
+│   │   ├── k8s.tf           # Labels and taints 
 │   │   ├── providers.tf 
 │   │   └── variables.tf
-│   └──README.md 
-├── app/
-├── gitops/               # (optional) Argo CD / GitOps manifests
+│   │
+│   └──README.md
+│
+├── scripts/
+│    ├── cluster-bootstrap.sh
+│    └── cluster-destroy.sh
+│
+├── apps/
+├── gitops/                   # Argo CD / GitOps manifests
 ├── .gitignore
 └── README.md
 ```
@@ -119,6 +128,10 @@ GPU workloads must **explicitly request GPUs** and **tolerate the GPU taint**.
 
 ### GPU Prerequisites (Mandatory)
 
+Install NVIDIA Container Toolkit: 
+
+https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html
+
 Verify GPU on host:
 
 ```bash
@@ -136,12 +149,11 @@ If either command fails, GPU workloads will not function correctly.
 ---
 
 ## 🚀 Cluster Creation
-
-From the `infra/` directory:
+Adjust path to .kube/config file
+Adjust paths on cluster-bootstrap.sh script and execute:
 
 ```bash
-terraform init
-terraform apply
+cluster-bootstrap.sh
 ```
 
 Terraform will:
@@ -150,6 +162,8 @@ Terraform will:
 * define node roles at bootstrap
 * expose GPU(s) to the cluster
 * apply labels and taints correctly
+
+Kubectl will create the argocd namespace and deploy installation manifest
 
 > **Note**: k3d exposes GPUs cluster-wide. GPU *usage* is restricted at the Kubernetes scheduling layer.
 
@@ -226,6 +240,21 @@ The operator is developed independently and deployed via GitOps.
 * The setup mirrors real-world patterns without pretending to be production
 
 These choices are **intentional** and documented.
+
+## 🧨 Cluster Destruction
+Adjust paths on cluster-bootstrap.sh script and execute:
+
+```bash
+cluster-destroy.sh
+```
+Kubectl will delete argocd namespace
+
+Terraform will:
+
+* remove taints and labels from agents (nodes)
+* destroy the k3d cluster
+
+Forced k3d cluster, docker container destruction and network pruning.
 
 ---
 
