@@ -77,14 +77,17 @@ GPU workloads must **explicitly request GPUs** and **tolerate the GPU taint**.
 ```text
 .
 ├── infra/
-│   ├── k3d.tf            # Cluster bootstrap (Terraform + k3d)
-│   ├── variables.tf     # Cluster configuration
-│   └── providers.tf
-├── apps/
-│   ├── cpu-app/          # Example CPU-based application manifests
-│   └── gpu-app/          # Example GPU workloads / inference services
+│   ├──cluster
+│   │   ├── k3d.tf            # Cluster bootstrap (Terraform + k3d)
+│   │   ├── providers.tf      # Cluster configuration
+│   │   └── variables.tf
+│   ├──platform
+│   │    ├── k8S.tf           # Labels and taints 
+│   │    ├── providers.tf 
+│   │    └── variables.tf
+│   └──README.md 
+├── app/
 ├── gitops/               # (optional) Argo CD / GitOps manifests
-├── operators/
 ├── .gitignore
 └── README.md
 ```
