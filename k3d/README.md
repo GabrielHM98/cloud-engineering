@@ -60,10 +60,12 @@ This project is intentionally **local-first**: it demonstrates *platform enginee
 
   * labeled and tainted (`NoSchedule`)
   * only infra workloads tolerate it
+
 * **GPU node**
 
   * labeled and tainted as well
   * only GPU workloads can schedule
+  
 * **App node**
 
   * default scheduling target
