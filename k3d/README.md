@@ -84,6 +84,7 @@ GPU workloads must **explicitly request GPUs** and **tolerate the GPU taint**.
 │   ├── cpu-app/          # Example CPU-based application manifests
 │   └── gpu-app/          # Example GPU workloads / inference services
 ├── gitops/               # (optional) Argo CD / GitOps manifests
+├── operators/
 ├── .gitignore
 └── README.md
 ```
@@ -200,6 +201,16 @@ Apply and inspect logs:
 kubectl apply -f gpu-test.yaml
 kubectl logs gpu-test
 ```
+---
+
+## 🧩 Downscaler Operator
+
+This repository includes a custom Kubernetes operator responsible for:
+- downscaling deployments with low request rates
+- reacting to observability signals
+- conserving resources on constrained clusters
+
+The operator is developed independently and deployed via GitOps.
 
 ---
 
