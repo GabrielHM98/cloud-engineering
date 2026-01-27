@@ -1,4 +1,4 @@
-# GPU-Enabled Kubernetes Platform PoC (k3d + k3s)
+# GPU-Enabled Kubernetes Platform PoC (k3d + k3s + k8s)
 
 This repository contains a **local, reproducible Kubernetes platform proof-of-concept** showcasing:
 
