@@ -1,4 +1,4 @@
-# GPU-Enabled Kubernetes Platform PoC (k3d + k3s)
+# GPU-Enabled Kubernetes Platform PoC (k3d + k3s + k8s)
 
 This repository contains a **local, reproducible Kubernetes platform proof-of-concept** showcasing:
 
@@ -82,9 +82,9 @@ GPU workloads must **explicitly request GPUs** and **tolerate the GPU taint**.
 │   │   ├── providers.tf      # Cluster configuration
 │   │   └── variables.tf
 │   ├──platform
-│   │    ├── k8S.tf           # Labels and taints 
-│   │    ├── providers.tf 
-│   │    └── variables.tf
+│   │   ├── k8S.tf           # Labels and taints 
+│   │   ├── providers.tf 
+│   │   └── variables.tf
 │   └──README.md 
 ├── app/
 ├── gitops/               # (optional) Argo CD / GitOps manifests
