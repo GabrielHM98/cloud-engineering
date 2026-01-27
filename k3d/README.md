@@ -149,8 +149,7 @@ If either command fails, GPU workloads will not function correctly.
 ---
 
 ## 🚀 Cluster Creation
-Adjust path to .kube/config file
-Adjust paths on cluster-bootstrap.sh script and execute:
+Adjust path to .kube/config file, paths on cluster-bootstrap.sh script and execute:
 
 ```bash
 cluster-bootstrap.sh
