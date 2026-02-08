@@ -6,9 +6,10 @@ resource "azurerm_kubernetes_cluster" "aks" {
 
   default_node_pool {
     name            = "workers"
-    node_count      = 1
+    node_count      = 2
     vm_size         = "Standard_D2as_v6"
     vnet_subnet_id = azurerm_subnet.aks.id
+    node_labels = { "role" = "worker" }
   }
 
   identity { type = "SystemAssigned" }
