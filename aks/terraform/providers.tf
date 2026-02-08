@@ -1,6 +1,6 @@
 provider "azurerm" {
   features           {}
-  subscription_id = "fcbb2ca3-be86-4845-a3e2-bebe29c2b41a"
+  subscription_id = ""
 }
 
 provider "kubernetes" {
