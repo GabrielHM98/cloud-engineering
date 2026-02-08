@@ -1,5 +1,3 @@
-provider "azuread" {}
-
 resource "azuread_group" "cluster_admins" {
   display_name     = "aks-cluster-admins"
   security_enabled = true

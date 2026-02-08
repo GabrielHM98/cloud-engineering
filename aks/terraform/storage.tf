@@ -8,12 +8,12 @@ resource "azurerm_storage_account" "platform" {
 
 resource "azurerm_storage_container" "velero" {
   name                  = "velero-backups"
-  storage_account_name  = azurerm_storage_account.platform.name
+  storage_account_id = azurerm_storage_account.platform.id
   container_access_type = "private"
 }
 
 resource "azurerm_storage_container" "thanos" {
   name                  = "thanos-metrics"
-  storage_account_name  = azurerm_storage_account.platform.name
+  storage_account_id = azurerm_storage_account.platform.id
   container_access_type = "private"
 }

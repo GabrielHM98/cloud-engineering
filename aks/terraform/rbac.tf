@@ -1,4 +1,4 @@
-resource "kubernetes_namespace" "platform" {
+resource "kubernetes_namespace_v1" "platform" {
   for_each = toset([
     "argocd",
     "monitoring",
@@ -10,15 +10,17 @@ resource "kubernetes_namespace" "platform" {
   metadata {
     name = each.key
   }
-}
+} 
 
-resource "kubernetes_namespace" "apps" {
+resource "kubernetes_namespace_v1" "apps" {
   metadata {
     name = "apps"
   }
 }
 
-resource "kubernetes_cluster_role_binding" "cluster_admins" {
+# ROLEBINDINGS
+
+resource "kubernetes_cluster_role_binding_v1" "cluster_admins" {
   metadata {
     name = "aks-cluster-admins"
   }
@@ -36,26 +38,8 @@ resource "kubernetes_cluster_role_binding" "cluster_admins" {
   }
 }
 
-resource "kubernetes_cluster_role_binding" "auditors" {
-  metadata {
-    name = "aks-auditors-view"
-  }
-
-  role_ref {
-    api_group = "rbac.authorization.k8s.io"
-    kind      = "ClusterRole"
-    name      = "view"
-  }
-
-  subject {
-    kind      = "Group"
-    name      = "aks-auditors"
-    api_group = "rbac.authorization.k8s.io"
-  }
-}
-
-resource "kubernetes_role_binding" "platform_admins" {
-  for_each = kubernetes_namespace.platform
+resource "kubernetes_role_binding_v1" "platform_admins" {
+  for_each = kubernetes_namespace_v1.platform
 
   metadata {
     name      = "platform-admins"
@@ -75,10 +59,10 @@ resource "kubernetes_role_binding" "platform_admins" {
   }
 }
 
-resource "kubernetes_role_binding" "developers_apps" {
+resource "kubernetes_role_binding_v1" "developers_apps" {
   metadata {
     name      = "developers-edit"
-    namespace = kubernetes_namespace.apps.metadata[0].name
+    namespace = kubernetes_namespace_v1.apps.metadata[0].name
   }
 
   role_ref {
@@ -91,5 +75,31 @@ resource "kubernetes_role_binding" "developers_apps" {
     kind      = "Group"
     name      = "aks-developers"
     api_group = "rbac.authorization.k8s.io"
+  }
+}
+
+#ROLES
+
+resource "kubernetes_cluster_role_v1" "platform_engineer" {
+  metadata {
+    name = "platform-engineer"
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["namespaces", "nodes", "services", "configmaps"]
+    verbs      = ["get", "list", "watch", "create", "update", "delete"]
+  }
+
+  rule {
+    api_groups = ["apps"]
+    resources  = ["deployments", "daemonsets", "statefulsets"]
+    verbs      = ["*"]
+  }
+
+  rule {
+    api_groups = ["apiextensions.k8s.io"]
+    resources  = ["customresourcedefinitions"]
+    verbs      = ["*"]
   }
 }
