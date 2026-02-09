@@ -15,6 +15,7 @@ The goal is to showcase **end-to-end platform engineering**: from cloud infra �
 
 ## 🧱 Architecture Overview
 
+```text
 Azure Provider
 └── AKS Cluster
 ├── Infra Node Pool
@@ -25,11 +26,13 @@ Azure Provider
     ├── External Ingress Controller (public)
     ├── Internal Ingress Controller (private)
     └── Application Workloads
-
+```
 
 ---
 
 ## 📁 Repository Structure
+
+```text
 aks
 ├── infra/
 │   ├── main.tf 
@@ -52,7 +55,7 @@ aks
 │       └──  ingresscontroller-app.yaml 
 │       
 └── README.md
-
+```
 
 ---
 
