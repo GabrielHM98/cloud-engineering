@@ -1,31 +1,55 @@
 apiVersion: argoproj.io/v1alpha1
 kind: ApplicationSet
 metadata:
-  name: platform-ingress-root
+  name: ingress-controllers
   namespace: argocd
 spec:
   generators:
     - list:
         elements:
-          - name: ingress-external
-            path: aks/gitops/ingress-platform/external
-          - name: ingress-internal
-            path: aks/gitops/ingress-platform/internal
           - name: ingress-infra
-            path: aks/gitops/ingress-platform/infra
+            namespace: ingress-infra
+            ingressClass: infra
+            nodeRole: infra
+          - name: ingress-external
+            namespace: ingress-external
+            ingressClass: external
+            nodeRole: infra
+          - name: ingress-internal
+            namespace: ingress-internal
+            ingressClass: internal
+            nodeRole: infra
   template:
     metadata:
-      name: '{{name}}'
+      name: "{{name}}"
+      labels:
+        app.kubernetes.io/part-of: ingress
+        app.kubernetes.io/managed-by: applicationset
     spec:
       project: default
       source:
-        repoURL: https://github.com/GabrielHM98/cloud-engineering
-        targetRevision: master
-        path: '{{path}}'
+        repoURL: https://kubernetes.github.io/ingress-nginx
+        chart: ingress-nginx
+        targetRevision: 4.14.3
+        helm:
+          values: |
+            controller:
+              ingressClassResource:
+                name: {{ingressClass}}
+              ingressClass: {{ingressClass}}
+              nodeSelector:
+                role: {{nodeRole}}
+              tolerations:
+                - key: "role"
+                  operator: "Equal"
+                  value: {{nodeRole}}
+                  effect: "NoSchedule"
       destination:
         server: https://kubernetes.default.svc
-        namespace: argocd
+        namespace: "{{namespace}}"
       syncPolicy:
         automated:
           prune: true
           selfHeal: true
+        syncOptions:
+        - CreateNamespace=true
