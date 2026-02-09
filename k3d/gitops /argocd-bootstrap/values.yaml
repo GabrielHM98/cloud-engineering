@@ -1,0 +1,27 @@
+global:
+  nodeSelector:
+    role: infra
+  tolerations:
+    - key: "role"
+      operator: "Equal"
+      value: "infra"
+      effect: "NoSchedule"
+
+server:
+  ingress:
+      enabled: true
+      ingressClassName: infra
+      annotations:
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+        nginx.ingress.kubernetes.io/ssl-redirect: "true"
+      hosts:
+        - argocd.platform.gabrielhm.dev
+      paths:
+        - /
+      pathType: Prefix
+  service:
+    type: ClusterIP
+
+configs:
+  cm:
+    admin.enabled: "true"
