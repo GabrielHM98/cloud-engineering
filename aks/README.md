@@ -1,4 +1,4 @@
-# ☁️ AKS Platform Engineering Demo (Terraform + ArgoCD + GitOps)
+# ☁️ AKS Cluster Engineering Demo (Terraform + ArgoCD + GitOps)
 
 This repository demonstrates a **production-style Kubernetes platform setup on Azure AKS**, built with:
 
