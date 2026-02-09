@@ -1,0 +1,63 @@
+kube-prometheus-stack:
+  grafana:
+    enabled: false
+
+  alertmanager:
+    enabled: true
+
+  prometheus:
+    prometheusSpec:
+      retention: 15d
+      storageSpec:
+        volumeClaimTemplate:
+          spec:
+            storageClassName: managed-csi
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 50Gi
+      thanos:
+        image: quay.io/thanos/thanos:v0.34.1
+        objectStorageConfig:
+          existingSecret:
+            name: thanos-objstore
+            key: objstore.yml
+
+
+thanos:
+  image:
+    registry: docker.io
+    repository: bitnamilegacy/thanos
+  existingObjstoreSecret: thanos-objstore
+
+  query:
+    enabled: true
+
+  queryFrontend:
+    enabled: true
+
+  storegateway:
+    enabled: true
+
+  compactor:
+    enabled: true
+
+
+grafana:
+  adminPassword: supersecret-change-me
+
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: Thanos
+          type: prometheus
+          url: http://observability-thanos-query.monitoring.svc.cluster.local:9090
+          access: proxy
+          isDefault: true
+
+  ingress:
+    enabled: true
+    ingressClassName: external
+    hosts:
+      - grafana.example.com
