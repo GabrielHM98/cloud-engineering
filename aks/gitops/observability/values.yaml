@@ -14,11 +14,6 @@ kube-prometheus-stack:
 
   prometheus:
     prometheusSpec:
-      additionalScrapeConfigs:
-        - job_name: 'kubelet'
-          scheme: https
-          tls_config:
-          insecure_skip_verify: true
       retention: 1d
       storageSpec:
         volumeClaimTemplate:
