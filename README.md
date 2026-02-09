@@ -79,14 +79,6 @@ Each provider folder is self-contained and includes:
 
 Each subproject contains its own README with setup instructions.
 
-Example:
-
-```bash
-cd aks/infra
-terraform init
-terraform apply
-```
-
 ## 🧭 Roadmap (Living Document)
 
 - [x] AKS platform PoC 
