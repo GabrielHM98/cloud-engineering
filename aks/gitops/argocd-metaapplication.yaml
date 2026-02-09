@@ -1,14 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-meta
+  name: argocd-metaapp
   namespace: argocd
 spec:
   project: default
   source:
     repoURL: https://github.com/GabrielHM98/cloud-engineering
     targetRevision: master
-    path: aks/gitops/bootstrap
+    path: aks/gitops/argocd-bootstrap
     helm:
       valueFiles:
         - values.yaml

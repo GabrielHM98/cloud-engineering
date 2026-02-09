@@ -4,7 +4,7 @@ description: ArgoCD installation and configuration for the AKS platform control 
 type: application
 
 version: 0.1.0
-appVersion: "2.11.0"   
+appVersion: "3.3.0"   
 
 maintainers:
   - name: GabrielHM
@@ -17,5 +17,5 @@ sources:
 
 dependencies:
   - name: argo-cd
-    version: 7.5.2
+    version: 9.4.1
     repository: https://argoproj.github.io/argo-helm
