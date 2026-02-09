@@ -49,10 +49,17 @@ aks
 │   ├── argocd-bootstrap/
 │   │   ├── Chart.yaml
 │   |   └── values.yaml
-│   └── ingresscontroller/
-│       ├── appset/
-│       │   └── ingress.yaml  
-│       └──  ingresscontroller-app.yaml 
+│   │   
+│   ├── ingresscontroller/
+│   │   ├── appset/
+│   │   │   └── ingress.yaml  
+│   │   └──  ingresscontroller-app.yaml 
+│   │
+│   └── observability/
+│       ├── argocd-app/
+│       │   └── application.yaml
+│       ├── Chart.yaml
+│       └── values.yaml   
 │       
 └── README.md
 ```

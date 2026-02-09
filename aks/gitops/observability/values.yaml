@@ -41,7 +41,6 @@ thanos:
   compactor:
     enabled: true
 
-
 grafana:
   adminPassword: supersecret-change-me
 
