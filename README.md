@@ -88,15 +88,14 @@ terraform apply
 ```
 
 ## 🧭 Roadmap (Living Document)
-```text
- [x] AKS platform PoC 
- [ ] EKS platform PoC
- [ ] GKE platform PoC
- [ ] Observability stack (Prometheus + Grafana + Thanos)
- [ ] cert-manager + TLS automation
- [ ] GPU node pool + AI inference service
- [ ] Custom autoscaling / lifecycle operator
-```
+
+- [x] AKS platform PoC 
+- [ ] EKS platform PoC
+- [ ] GKE platform PoC
+- [ ] Observability stack (Prometheus + Grafana + Thanos)
+- [ ] cert-manager + TLS automation
+- [ ] GPU node pool + AI inference service
+- [ ] Custom autoscaling / lifecycle operator
 
 ## 👋 About
 
