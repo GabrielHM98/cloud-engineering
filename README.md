@@ -75,10 +75,6 @@ Each provider folder is self-contained and includes:
 
 ---
 
-## 🚀 Getting Started
-
-Each subproject contains its own README with setup instructions.
-
 ## 🧭 Roadmap (Living Document)
 
 - [x] AKS platform PoC 
