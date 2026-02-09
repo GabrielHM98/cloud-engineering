@@ -23,7 +23,6 @@ kube-prometheus-stack:
             name: thanos-objstore
             key: objstore.yml
 
-
 thanos:
   image:
     registry: docker.io
