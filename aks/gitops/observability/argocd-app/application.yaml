@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/GabrielHM98/cloud-engineering.git
     targetRevision: master
-    path: observability
+    path: aks/gitops/observability/argocd-app
     helm:
       valueFiles:
         - values.yaml
