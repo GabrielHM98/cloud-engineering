@@ -88,7 +88,7 @@ terraform apply
 ```
 
 ## 🧭 Roadmap (Living Document)
-
+```text
  [x] AKS platform PoC 
  [ ] EKS platform PoC
  [ ] GKE platform PoC
@@ -96,8 +96,9 @@ terraform apply
  [ ] cert-manager + TLS automation
  [ ] GPU node pool + AI inference service
  [ ] Custom autoscaling / lifecycle operator
+```
 
-👋 About
+## 👋 About
 
 This repository is part of a continuous learning journey in cloud and platform engineering.
 It focuses on building realistic, production-inspired architectures.
