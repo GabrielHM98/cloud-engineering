@@ -1,4 +1,11 @@
 kube-prometheus-stack:
+  kubelet:
+    enabled: true
+    serviceMonitor:
+      https: true
+      insecureSkipVerify: true
+      cAdvisor: true
+
   grafana:
     enabled: false
 
@@ -7,7 +14,12 @@ kube-prometheus-stack:
 
   prometheus:
     prometheusSpec:
-      retention: 15d
+      additionalScrapeConfigs:
+        - job_name: 'kubelet'
+          scheme: https
+          tls_config:
+          insecure_skip_verify: true
+      retention: 1d
       storageSpec:
         volumeClaimTemplate:
           spec:
@@ -17,7 +29,7 @@ kube-prometheus-stack:
               requests:
                 storage: 50Gi
       thanos:
-        image: quay.io/thanos/thanos:v0.34.1
+        image: quay.io/thanos/thanos:v0.35.1
         objectStorageConfig:
           existingSecret:
             name: thanos-objstore
