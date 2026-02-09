@@ -7,8 +7,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/GabrielHM98/cloud-engineering
-    targetRevision: main
-    path: gitops/bootstrap
+    targetRevision: master
+    path: aks/gitops/bootstrap
     helm:
       valueFiles:
         - values.yaml
