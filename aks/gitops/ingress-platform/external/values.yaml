@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: ingress-external
-  namespace: argocd
+  namespace: ingress-external
 spec:
   project: default
   source:
@@ -15,8 +15,6 @@ spec:
           ingressClassResource:
             name: external
           ingressClass: external
-          service:
-            type: LoadBalancer
           nodeSelector:
             role: infra
           tolerations:
