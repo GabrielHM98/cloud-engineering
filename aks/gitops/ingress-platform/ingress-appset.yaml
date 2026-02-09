@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: platform-ingress-root
+  namespace: argocd
+spec:
+  generators:
+    - list:
+        elements:
+          - name: ingress-external
+            path: aks/gitops/ingress-platform/external
+          - name: ingress-internal
+            path: aks/gitops/ingress-platform/internal
+          - name: ingress-infra
+            path: aks/gitops/ingress-platform/infra
+  template:
+    metadata:
+      name: '{{name}}'
+    spec:
+      project: default
+      source:
+        repoURL: https://github.com/GabrielHM98/cloud-engineering
+        targetRevision: master
+        path: '{{path}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: argocd
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true

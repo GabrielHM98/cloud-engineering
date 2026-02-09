@@ -1,0 +1,16 @@
+global:
+  nodeSelector:
+    role: infra
+  tolerations:
+    - key: "role"
+      operator: "Equal"
+      value: "infra"
+      effect: "NoSchedule"
+
+server:
+  service:
+    type: ClusterIP
+
+configs:
+  cm:
+    admin.enabled: "true"

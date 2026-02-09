@@ -1,0 +1,16 @@
+ingress-nginx:
+  controller:
+    ingressClassResource:
+      name: infra
+    ingressClass: infra
+    service:
+      type: LoadBalancer
+      annotations:
+        service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+    nodeSelector:
+      role: infra
+    tolerations:
+      - key: "role"
+        operator: "Equal"
+        value: "infra"
+        effect: "NoSchedule"
