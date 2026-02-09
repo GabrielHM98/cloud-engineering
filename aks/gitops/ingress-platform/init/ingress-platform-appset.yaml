@@ -1,17 +1,14 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: argocd-metaapp
+  name: ingress-platform-appset
   namespace: argocd
 spec:
   project: default
   source:
-    repoURL: https://github.com/GabrielHM98/cloud-engineering
+    repoURL: https://github.com/GabrielHM98/cloud-engineering.git
     targetRevision: master
-    path: aks/gitops/argocd-bootstrap
-    helm:
-      valueFiles:
-        - values.yaml
+    path: aks/gitops/argocd-bootstrap/ingress-platform
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
