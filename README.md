@@ -49,12 +49,13 @@ This repo evolves over time as new experiments, PoCs, and platform components ar
 ## 📁 Repository Structure
 
 ```text
-├── aks/ # Azure AKS demos and platform setup
-├── eks/ # AWS EKS demos (planned)
+cloud-engineering/
+├── aks/ # Azure AKS demos and paas setup
+├── eks/ # AWS EKS demos
 ├── gke/ # GCP GKE demos (planned)
-├── operators/ # Custom Kubernetes operators
+├── infra-gitops/ # Custom Kubernetes operators
 ├── apps/
-│   └── ai-gpu-app/ # GPU-enabled AI application (WIP)
+│   └── ai-gpu-app/ # GPU-enabled AI application (planned)
 └── README.md
 ```
 
