@@ -44,6 +44,16 @@ aks
 │   ├── providers.tf 
 │   ├── variables.tf 
 │   └── rbac.tf 
+├── paas/
+│   ├── namespaces.tf 
+│   ├── nodepools.tf
+│   ├── outputs.tf
+│   ├── quotas.tf
+│   ├── rbac.tf
+│   ├── team.tfvars 
+│   ├── providers.tf 
+│   ├── variables.tf 
+│   └── versions.tf 
 └── README.md
 ```
 
