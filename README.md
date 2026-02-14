@@ -78,9 +78,9 @@ Each provider folder is self-contained and includes:
 ## 🧭 Roadmap (Living Document)
 
 - [x] AKS platform PoC 
-- [ ] EKS platform PoC
+- [x] EKS platform PoC
 - [ ] GKE platform PoC
-- [ ] Observability stack (Prometheus + Grafana + Thanos)
+- [x] Observability stack (Prometheus + Grafana + Thanos)
 - [ ] cert-manager + TLS automation
 - [ ] GPU node pool + AI inference service
 - [ ] Custom autoscaling / lifecycle operator
