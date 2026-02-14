@@ -4,10 +4,10 @@ global:
 server:
   ingress:
     enabled: true
-    controller: generic
+    controller: infra
     ingressClassName: infra
 
-    hostname: argocd-infra.gitops.example.com
+    hostname: argocd-infra.gitops.com
     path: /
     pathType: Prefix
 

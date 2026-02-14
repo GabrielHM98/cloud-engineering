@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: https://github.com/GabrielHM98/cloud-engineering.git
     targetRevision: master
-    path: aks/gitops/ingresscontroller/appset
+    path: gitops/ingresscontroller/release
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
