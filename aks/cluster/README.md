@@ -34,7 +34,7 @@ Azure Provider
 
 ```text
 aks
-├── infra/
+├── cluster/
 │   ├── main.tf 
 │   ├── aks.tf
 │   ├── networks.tf
@@ -44,23 +44,6 @@ aks
 │   ├── providers.tf 
 │   ├── variables.tf 
 │   └── rbac.tf 
-│
-├── gitops/
-│   ├── argocd-bootstrap/
-│   │   ├── Chart.yaml
-│   |   └── values.yaml
-│   │   
-│   ├── ingresscontroller/
-│   │   ├── appset/
-│   │   │   └── ingress.yaml  
-│   │   └──  ingresscontroller-app.yaml 
-│   │
-│   └── observability/
-│       ├── argocd-app/
-│       │   └── application.yaml
-│       ├── Chart.yaml
-│       └── values.yaml   
-│       
 └── README.md
 ```
 

@@ -53,7 +53,7 @@ cloud-engineering/
 ├── aks/ # Azure AKS demos and paas setup
 ├── eks/ # AWS EKS demos
 ├── gke/ # GCP GKE demos (planned)
-├── infra-gitops/ # Custom Kubernetes operators
+├── infra-gitops/ # Custom argocd gitops infra deploy
 ├── apps/
 │   └── ai-gpu-app/ # GPU-enabled AI application (planned)
 └── README.md
