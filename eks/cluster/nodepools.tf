@@ -6,7 +6,7 @@ locals {
       capacity_type  = "SPOT"
 
       min_size     = 1
-      max_size     = 2
+      max_size     = 1
       desired_size = 1
 
       labels = {
@@ -15,13 +15,11 @@ locals {
 
       taints = {
         platform = {
-          key    = "dedicated"
+          key    = "role"
           value  = "platform"
           effect = "NO_SCHEDULE"
         }
       }
     }
-
-    # team_a = { ... }
   }
 }
