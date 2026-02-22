@@ -1,5 +1,5 @@
 global:
-  domain: argocd-infra.gitops.example.com
+  domain: argocd-infra.gitops.com
 
 server:
   ingress:
