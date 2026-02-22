@@ -22,7 +22,6 @@ module "eks" {
       desired_size = 1
 
       labels = {
-        lifecycle = "spot"
         role      = "infra"
       }
     }

@@ -12,14 +12,6 @@ locals {
       labels = {
         role = "platform"
       }
-
-      taints = {
-        platform = {
-          key    = "role"
-          value  = "platform"
-          effect = "NO_SCHEDULE"
-        }
-      }
     }
   }
 }
