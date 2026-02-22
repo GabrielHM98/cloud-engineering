@@ -8,8 +8,8 @@ module "eks" {
   vpc_id     = module.vpc.vpc_id
   subnet_ids = module.vpc.public_subnets
 
-  # Public endpoint so you can kubectl from your laptop
   cluster_endpoint_public_access = true
+  cluster_encryption_config   = {} 
 
   eks_managed_node_groups = {
     spot_small = {
