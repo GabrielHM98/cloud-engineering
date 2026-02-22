@@ -57,7 +57,7 @@ grafana:
       datasources:
         - name: Thanos
           type: prometheus
-          url: http://observability-thanos-query.monitoring.svc.cluster.local:9090
+          url: http://observability-thanos-query.observability-stack.svc.cluster.local:9090
           access: proxy
           isDefault: true
 
