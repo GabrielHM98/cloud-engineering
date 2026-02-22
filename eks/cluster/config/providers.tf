@@ -17,6 +17,8 @@ provider "aws" {
 
 variable "cluster_name" {
   type = string
+  default = "ghmekspoc00"
+
 }
 
 data "aws_eks_cluster" "this" {
