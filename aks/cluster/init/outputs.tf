@@ -3,5 +3,5 @@ output "cluster_name" {
 }
 
 output "resource_group" {
-  value = azurerm_resource_group.aks.name
+  value = azurerm_resource_group.rg.name
 }
