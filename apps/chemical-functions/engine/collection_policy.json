@@ -1,0 +1,17 @@
+{
+  "contract_version": "chemical-source-collection-v1",
+  "adapter_version": "ctx-chemicaldetailall-to-comptox-csv-v1",
+  "endpoint": "https://comptox.epa.gov/ctx-api/chemical/detail/search/by-dtxsid/",
+  "projection": "chemicaldetailall",
+  "api_key_environment_variable": "CTX_API_KEY",
+  "batch_size": 100,
+  "request_timeout_seconds": 30,
+  "minimum_request_interval_seconds": 3,
+  "maximum_attempts_per_batch": 4,
+  "maximum_retry_delay_seconds": 30,
+  "maximum_response_bytes": 33554432,
+  "documentation_url": "https://comptox.epa.gov/ctx-api/docs/chemical.json",
+  "documentation_checked_on_utc": "2026-10-19",
+  "documentation_api_version": "1.1.1",
+  "documentation_sha256": "5f7bfb2f890bc7b9d0a7feff702ea49735fbd3d2a37f51e48a793605ab77f2ad"
+}

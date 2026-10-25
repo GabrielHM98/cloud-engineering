@@ -1,0 +1,15 @@
+{
+  "dataset": "CPDat v4.0",
+  "figshare_article_id": 5352997,
+  "figshare_article_version": 5,
+  "article_url": "https://epa.figshare.com/articles/dataset/The_Chemical_and_Products_Database_CPDat_MySQL_Data_File/5352997/5",
+  "metadata_url": "https://api.figshare.com/v2/articles/5352997/versions/5",
+  "download_url": "https://ndownloader.figshare.com/files/53538266",
+  "archive_name": "cpdat_v4.0.zip",
+  "size_bytes": 106473580,
+  "md5": "7c56445061b074949f86bc42b4b4ceb3",
+  "license": "CC0",
+  "functions_member": "cpdat_v4.0_functional_use_data.csv",
+  "vocabulary_member": "cpdat_v4.0_fc_vocabulary.csv",
+  "sha256": "53cd5b49210a6f3790be0c33485654de7461b4d1fdeea9fdc312668c82e93d15"
+}

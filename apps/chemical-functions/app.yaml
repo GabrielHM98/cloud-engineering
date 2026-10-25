@@ -1,0 +1,31 @@
+schemaVersion: 1
+components:
+  web:
+    target: web
+    port: 8080
+    readyPath: /readyz
+    memory: 256m
+    cpus: '1'
+    env:
+      CATALOG_URL: http://catalog:8080
+      PREDICTOR_URL: http://predictor:8080
+  catalog:
+    target: catalog
+    port: 8080
+    readyPath: /readyz
+    memory: 256m
+    cpus: '1'
+  predictor:
+    target: predictor
+    port: 8080
+    readyPath: /readyz
+    memory: 1536m
+    cpus: '2'
+prepare:
+  - [python3, scripts/runtime_artifacts.py, fetch, --repository, '{repository}']
+  - [python3, -m, pip, install, -r, requirements/dev.txt]
+  - [python3, scripts/runtime_artifacts.py, verify]
+checks:
+  - [python3, scripts/run_tests.py]
+integrationChecks:
+  - [python3, scripts/smoke_test.py, --url, '{url:web}']

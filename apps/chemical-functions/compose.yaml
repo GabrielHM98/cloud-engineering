@@ -1,0 +1,55 @@
+name: chemical-functions
+
+x-runtime: &runtime
+  init: true
+  read_only: true
+  tmpfs:
+    - /tmp:rw,noexec,nosuid,size=64m,mode=1777
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  pids_limit: 128
+  restart: unless-stopped
+
+services:
+  catalog:
+    <<: *runtime
+    image: chemical-functions/catalog:local
+    build:
+      context: .
+      target: catalog
+    mem_limit: 256m
+    cpus: 1
+    networks: [backend]
+
+  predictor:
+    <<: *runtime
+    image: chemical-functions/predictor:local
+    build:
+      context: .
+      target: predictor
+    mem_limit: 1536m
+    cpus: 2
+    networks: [backend]
+
+  web:
+    <<: *runtime
+    image: chemical-functions/web:local
+    build:
+      context: .
+      target: web
+    environment:
+      CATALOG_URL: http://catalog:8080
+      PREDICTOR_URL: http://predictor:8080
+    depends_on:
+      catalog:
+        condition: service_healthy
+      predictor:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:${APP_PORT:-8080}:8080"
+    mem_limit: 256m
+    cpus: 1
+    networks: [backend]
+
+networks:
+  backend:

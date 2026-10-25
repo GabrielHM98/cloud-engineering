@@ -1,0 +1,21 @@
+{
+  "protocol_id": "cpdat-annotation-benchmark-v1",
+  "target": "recorded_function_annotations_not_verified_industrial_suitability",
+  "unannotated_target_encoding": "zero_means_not_recorded_not_confirmed_negative",
+  "labels": ["Fragrance", "Biocide", "Solvent", "Antioxidant", "Dye", "Humectant", "Surfactant (surface active agent)", "Plasticizer", "Emulsifier"],
+  "group_column": "similarity_component_t0.7",
+  "split_seed": 42,
+  "split_rule": "sha256_protocol_seed_group_first_64_bits",
+  "train_fraction": 0.7,
+  "validation_fraction": 0.15,
+  "min_observed_positives_per_label_per_split": 10,
+  "min_positive_groups_per_label_per_split": 5,
+  "selection_metric": "validation_macro_average_precision_on_recorded_annotations",
+  "logistic_C": [0.1, 1.0, 10.0],
+  "forest_min_samples_leaf": [1, 3],
+  "forest_estimators": 150,
+  "random_seed": 42,
+  "cpu_threads": 4,
+  "refit_winner_on": "train_and_validation",
+  "test_policy": "evaluate_selected_refitted_winner_once_per_run_directory"
+}

@@ -1,0 +1,21 @@
+{
+  "policy_id": "morgan-family-audit-v1",
+  "required_rdkit_distribution": "2026.9.1",
+  "morgan": {
+    "radius": 2,
+    "fpSize": 2048,
+    "includeChirality": true,
+    "useBondTypes": true,
+    "includeRingMembership": true,
+    "countSimulation": false
+  },
+  "similarity_thresholds": [0.6, 0.7, 0.8],
+  "primary_similarity_threshold": 0.7,
+  "grouping": "connected_components_tanimoto_gte_threshold",
+  "scaffold": "rdkit_murcko_nonisomeric",
+  "acyclic_scaffold": "not_applicable",
+  "candidate_roles_for_review": [
+    "Fragrance", "Biocide", "Solvent", "Antioxidant", "Dye", "Humectant",
+    "Surfactant (surface active agent)", "Plasticizer", "Emulsifier"
+  ]
+}

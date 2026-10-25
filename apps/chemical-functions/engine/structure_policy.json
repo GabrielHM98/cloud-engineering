@@ -1,0 +1,17 @@
+{
+  "policy_id": "single-component-organic-v1",
+  "required_rdkit_distribution": "2026.9.1",
+  "allowed_atomic_numbers": [1, 6, 7, 8, 9, 15, 16, 17, 35, 53],
+  "require_carbon": true,
+  "require_single_component": true,
+  "reject_extended_smiles": true,
+  "reject_query_atoms": true,
+  "reject_radicals": true,
+  "preserve_stereochemistry": true,
+  "neutralize": false,
+  "strip_counterions": false,
+  "normalize_tautomers": false,
+  "allow_inchikey_standard_flag_only_difference": true,
+  "source_inchikey_required": true,
+  "qc_level_filter": null
+}

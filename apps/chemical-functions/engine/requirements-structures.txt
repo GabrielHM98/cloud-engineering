@@ -1,0 +1,4 @@
+# Tested with Python 3.12 on Linux x86_64.
+rdkit==2026.9.1
+numpy==2.5.4
+Pillow==13.0.0
