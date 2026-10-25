@@ -1,0 +1,25 @@
+{{- if eq .Values.exposure.type "route" }}
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: {{ include "web-service.fullname" . }}
+  labels:
+    {{- include "web-service.labels" . | nindent 4 }}
+  {{- with .Values.exposure.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  host: {{ .Values.exposure.host | quote }}
+  path: {{ .Values.exposure.path | quote }}
+  to:
+    kind: Service
+    name: {{ include "web-service.fullname" . }}
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: {{ .Values.exposure.route.insecureEdgeTerminationPolicy }}
+  wildcardPolicy: None
+{{- end }}

@@ -1,0 +1,7 @@
+fullnameOverride: chemical-functions-catalog
+image:
+  repository: ghcr.io/YOUR_ACCOUNT/chemical-functions-catalog
+  tag: REPLACE_WITH_RELEASE_TAG
+resources:
+  requests: {cpu: 100m, memory: 128Mi}
+  limits: {cpu: "1", memory: 256Mi}

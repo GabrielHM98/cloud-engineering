@@ -1,0 +1,14 @@
+# Replace YOUR_ACCOUNT and the tag, or use a real image.digest.
+fullnameOverride: chemical-functions-web
+image:
+  repository: ghcr.io/YOUR_ACCOUNT/chemical-functions-web
+  tag: REPLACE_WITH_RELEASE_TAG
+env:
+  - name: CATALOG_URL
+    value: http://chemical-functions-catalog:8080
+  - name: PREDICTOR_URL
+    value: http://chemical-functions-predictor:8080
+resources:
+  requests: {cpu: 100m, memory: 128Mi}
+  limits: {cpu: "1", memory: 256Mi}
+# Gateway readiness checks dependencies; liveness must only check this process.

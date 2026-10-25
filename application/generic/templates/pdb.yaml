@@ -1,0 +1,13 @@
+{{- if .Values.podDisruptionBudget.enabled }}
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: {{ include "web-service.fullname" . }}
+  labels:
+    {{- include "web-service.labels" . | nindent 4 }}
+spec:
+  minAvailable: {{ .Values.podDisruptionBudget.minAvailable | toJson }}
+  selector:
+    matchLabels:
+      {{- include "web-service.selectorLabels" . | nindent 6 }}
+{{- end }}

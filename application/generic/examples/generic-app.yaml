@@ -1,0 +1,13 @@
+# Illustrative image coordinates. Replace with your actual image before install.
+fullnameOverride: demo-api
+image:
+  repository: ghcr.io/example/demo-api
+  tag: "1.0.0"
+containerPort: 8080
+service:
+  port: 8080
+configMap:
+  enabled: true
+  data:
+    LOG_LEVEL: info
+    APP_ENV: development

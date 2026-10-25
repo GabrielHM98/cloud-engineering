@@ -1,0 +1,10 @@
+{{ include "web-service.fullname" . }} uses service port {{ .Values.service.port }}.
+Image: {{ include "web-service.image" . }}
+{{ if eq .Values.exposure.type "none" }}
+To access locally:
+  kubectl -n {{ .Release.Namespace }} port-forward service/{{ include "web-service.fullname" . }} 8080:{{ .Values.service.port }}
+{{ else }}
+Configured host: {{ .Values.exposure.host }}
+{{ end }}
+Check rollout:
+  kubectl -n {{ .Release.Namespace }} rollout status deployment/{{ include "web-service.fullname" . }}

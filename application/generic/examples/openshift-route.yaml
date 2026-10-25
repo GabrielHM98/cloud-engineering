@@ -1,0 +1,10 @@
+# Overlay on an application values file, for the externally visible web only.
+exposure:
+  type: route
+  host: chemical-functions.apps.example.com
+networkPolicy:
+  enabled: true
+  ingressPeers:
+    - namespaceSelector:
+        matchLabels:
+          kubernetes.io/metadata.name: openshift-ingress

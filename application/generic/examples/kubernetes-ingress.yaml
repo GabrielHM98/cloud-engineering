@@ -1,0 +1,9 @@
+exposure:
+  type: ingress
+  host: chemical-functions.example.com
+  ingress:
+    className: nginx
+    tls:
+      - secretName: chemical-functions-tls
+        hosts: [chemical-functions.example.com]
+# Create the TLS Secret separately or manage it with your certificate tooling.

@@ -1,0 +1,106 @@
+# One chart instance deploys one stateless HTTP service.
+nameOverride: ""
+fullnameOverride: ""
+replicaCount: 1
+image:
+  repository: "" # Required: e.g. ghcr.io/owner/chemical-functions-web
+  tag: "" # Explicit tag OR digest is required; there is no implicit latest.
+  digest: "" # sha256:<64 hexadecimal characters>; takes precedence over tag.
+  pullPolicy: IfNotPresent
+imagePullSecrets: [] # [{name: registry-credentials}]; existing namespace Secrets
+containerPort: 8080
+command: []
+args: []
+env: [] # Kubernetes EnvVar list; supports valueFrom.secretKeyRef
+# Existing ConfigMaps/Secrets only. ConfigMap below is also added automatically.
+envFrom: []
+configMap:
+  enabled: false
+  data: {} # String values, nonsecret only; changes trigger a rollout.
+service:
+  port: 8080
+serviceAccount:
+  create: true
+  name: "" # Required when create=false; an existing ServiceAccount.
+  annotations: {}
+podAnnotations: {}
+# No fixed UID or fsGroup: OpenShift may assign namespace-specific IDs.
+# On vanilla Kubernetes the image must declare a numeric nonzero USER,
+# or supply podSecurityContext.runAsUser for that image.
+podSecurityContext:
+  runAsNonRoot: true
+  seccompProfile:
+    type: RuntimeDefault
+securityContext:
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop: [ALL]
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: "1"
+    memory: 256Mi
+probes:
+  startup:
+    enabled: true
+    path: /healthz
+    periodSeconds: 5
+    timeoutSeconds: 2
+    failureThreshold: 60
+  readiness:
+    enabled: true
+    path: /readyz
+    periodSeconds: 10
+    timeoutSeconds: 2
+    failureThreshold: 3
+  liveness:
+    enabled: true
+    path: /healthz
+    periodSeconds: 20
+    timeoutSeconds: 2
+    failureThreshold: 3
+terminationGracePeriodSeconds: 30
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+# /tmp remains writable when readOnlyRootFilesystem=true.
+tmp:
+  enabled: true
+  sizeLimit: 128Mi
+extraVolumes: []
+extraVolumeMounts: []
+nodeSelector: {}
+tolerations: []
+affinity: {}
+topologySpreadConstraints: []
+autoscaling:
+  enabled: false
+  minReplicas: 2
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 75
+podDisruptionBudget:
+  enabled: false
+  minAvailable: 1
+exposure:
+  type: none # none, ingress, or route
+  host: ""
+  path: /
+  annotations: {}
+  ingress:
+    className: ""
+    tls: [] # [{secretName: app-tls, hosts: [app.example.com]}]
+  route:
+    # Edge termination uses the router's configured certificate. Supply your
+    # own certificate outside this chart if your hostname requires one.
+    insecureEdgeTerminationPolicy: Redirect
+networkPolicy:
+  enabled: false
+  # Ingress-only isolation when enabled; [] denies all inbound traffic.
+  # Each item is a Kubernetes NetworkPolicyPeer. NamespaceSelector AND
+  # podSelector in the same item constrain both. Egress is not restricted.
+  ingressPeers: []

@@ -1,0 +1,11 @@
+fullnameOverride: chemical-functions-predictor
+image:
+  repository: ghcr.io/YOUR_ACCOUNT/chemical-functions-predictor
+  tag: REPLACE_WITH_RELEASE_TAG
+resources:
+  requests: {cpu: 250m, memory: 512Mi}
+  limits: {cpu: "2", memory: 1536Mi}
+# Up to ten minutes for loading the model before liveness starts.
+probes:
+  startup:
+    failureThreshold: 120

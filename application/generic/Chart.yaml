@@ -1,0 +1,7 @@
+apiVersion: v2
+name: web-service
+description: Reusable stateless HTTP service for Kubernetes and OpenShift
+type: application
+version: 0.1.0
+kubeVersion: ">=1.27.0-0"
+keywords: [http, microservice, openshift]
